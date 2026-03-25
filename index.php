@@ -1,4 +1,9 @@
 <?php
+// Vercel static deploy: suppress PHP warnings so they don't appear in generated index.html
+error_reporting(0);
+ini_set('display_errors', '0');
+ini_set('log_errors', '0');
+@ini_set('html_errors', '0');
 /**
  * Kad Jemputan Majlis Aqiqah Aurora Sophia
  * Edit variables below for your event — no database required.
