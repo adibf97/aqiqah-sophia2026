@@ -1,0 +1,769 @@
+/**
+ * Kad Jemputan Majlis Aqiqah — gaya lembut & responsif
+ */
+
+:root {
+    /* --- Cheerful, warm & elegant color palette --- */
+    --cream: #fff5e4;
+    --cream-dark: #fdf0d5;
+    --blush-pink: #fadadd;
+    --sage: #cfe8d5;
+    --sage-dark: #a8cba9;
+    --peach: #ffcba4;
+    --peach-dark: #f5b082;
+    --gold: #d4af37;
+    --gold-soft: rgba(212, 175, 55, 0.25);
+    --charcoal: #333333;
+    --text: #333333;
+    --text-muted: #666666;
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --shadow: 0 1rem 3rem rgba(51, 51, 51, 0.08);
+    --radius: 1.5rem;
+    --font-body: "Poppins", system-ui, sans-serif;
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-script: "Great Vibes", cursive;
+    --font-arabic: "Amiri", serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body.invitation-body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background: linear-gradient(135deg, var(--cream) 0%, var(--blush-pink) 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Halaman depan aktif: halang skrol ke kandungan */
+body.invitation-body.cover-active {
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+}
+
+/* --- Muka depan (cover) — putih, bunga penjuru, tipografi rujukan --- */
+.cover-page {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 2rem);
+    background: #ffffff;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    animation: coverEnter 0.85s ease-out forwards;
+}
+
+@keyframes coverEnter {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.cover-page.is-leaving {
+    pointer-events: none;
+    animation: coverExit 0.65s ease forwards;
+}
+
+@keyframes coverExit {
+    to {
+        opacity: 0;
+        transform: translateY(-16px) scale(0.98);
+    }
+}
+
+.cover-floral-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.cover-floral-frame {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Bunga penjuru gaya cat air (CSS) */
+.cover-corner {
+    position: absolute;
+    width: clamp(100px, 28vw, 180px);
+    height: clamp(100px, 28vw, 180px);
+    border-radius: 55% 45% 60% 40% / 50% 55% 45% 50%;
+    opacity: 0.55;
+}
+
+.cover-corner--tl {
+    top: -2%;
+    left: -3%;
+    background: radial-gradient(ellipse at 30% 30%, var(--peach) 0%, transparent 55%),
+        radial-gradient(ellipse at 70% 60%, var(--sage) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, var(--blush-pink) 0%, transparent 45%);
+    transform: rotate(-12deg);
+}
+
+.cover-corner--tr {
+    top: -2%;
+    right: -3%;
+    background: radial-gradient(ellipse at 70% 30%, var(--sage) 0%, transparent 55%),
+        radial-gradient(ellipse at 30% 70%, var(--peach) 0%, transparent 50%);
+    transform: rotate(18deg);
+}
+
+.cover-corner--bl {
+    bottom: -4%;
+    left: -4%;
+    background: radial-gradient(ellipse at 40% 70%, var(--sage) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 30%, var(--blush-pink) 0%, transparent 48%);
+    transform: rotate(8deg);
+}
+
+.cover-corner--br {
+    bottom: -4%;
+    right: -4%;
+    background: radial-gradient(ellipse at 60% 60%, var(--peach) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 40%, var(--sage) 0%, transparent 52%);
+    transform: rotate(-6deg);
+}
+
+.cover-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 26rem;
+    text-align: center;
+    color: var(--charcoal);
+}
+
+.cover-bismillah {
+    font-family: var(--font-arabic);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--peach-dark) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.02em;
+}
+
+.cover-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.cover-title-script {
+    font-family: var(--font-script);
+    font-size: clamp(2rem, 7vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--charcoal);
+    margin: 0 0 0.75rem;
+}
+
+.cover-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.65rem 0;
+}
+
+.cover-divider-line {
+    flex: 1;
+    max-width: 5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+
+.cover-divider-ornament {
+    font-size: 0.45rem;
+    color: var(--gold);
+    opacity: 0.85;
+    line-height: 1;
+}
+
+.cover-name {
+    font-family: var(--font-body);
+    font-size: clamp(0.85rem, 2.8vw, 1rem);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin: 0.5rem 0;
+    line-height: 1.45;
+}
+
+.cover-dateline,
+.cover-timeline {
+    font-family: var(--font-body);
+    font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+    font-weight: 600;
+    color: var(--charcoal);
+    margin: 0.2rem 0;
+    letter-spacing: 0.04em;
+}
+
+.cover-timeline {
+    margin-bottom: 1.75rem;
+    opacity: 0.92;
+}
+
+.btn-cover-open {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    border: none;
+    color: #333;
+    background: linear-gradient(135deg, var(--peach) 0%, var(--blush-pink) 100%);
+    box-shadow: 0 0.35rem 1.2rem rgba(255, 203, 164, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.btn-cover-open:hover {
+    color: #333;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0.5rem 1.5rem rgba(255, 203, 164, 0.5);
+    filter: brightness(0.95);
+}
+
+.btn-cover-open:focus-visible {
+    outline: 3px solid rgba(255, 203, 164, 0.6);
+    outline-offset: 3px;
+}
+
+/* Kandungan utama selepas cover (animasi selepas hidden dibuang) */
+.main-invitation {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes mainInvitationEnter {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main-invitation:not([hidden]) {
+    animation: mainInvitationEnter 0.65s ease forwards;
+}
+
+/* --- Latar bentuk terapung --- */
+.bg-shapes {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.35;
+    animation: float 18s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, var(--peach) 0%, transparent 70%);
+    top: -80px;
+    right: -60px;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--sage) 0%, transparent 70%);
+    bottom: 10%;
+    left: -50px;
+    animation-delay: -4s;
+}
+
+.shape-3 {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+    top: 40%;
+    right: 15%;
+    animation-delay: -8s;
+}
+
+.shape-4 {
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(250, 218, 221, 0.6) 0%, transparent 70%);
+    bottom: -40px;
+    right: 25%;
+    animation-delay: -12s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(12px, -20px) scale(1.03);
+    }
+
+    66% {
+        transform: translate(-10px, 10px) scale(0.98);
+    }
+}
+
+/* --- Kad utama --- */
+main.main-invitation {
+    position: relative;
+    z-index: 1;
+}
+
+.invitation-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: var(--shadow);
+    animation: cardEnter 0.9s ease-out forwards;
+}
+
+/* --- Header dalaman kad (rujukan: salam serif, nama sage, jemputan formal) --- */
+.invitation-header-hero {
+    max-width: 500px;
+    padding: 0.5rem 0.25rem 1rem;
+    z-index: 1;
+}
+
+.invite-salam-img {
+    max-width: min(70%, 420px);
+    height: auto;
+    filter: contrast(1.02);
+}
+
+.invite-salam-arabic {
+    font-family: var(--font-arabic);
+    font-size: clamp(1.05rem, 3.6vw, 1.42rem);
+    font-weight: 700;
+    line-height: 1.75;
+    color: var(--charcoal);
+    margin-bottom: 0;
+}
+
+.invite-serif {
+    font-family: var(--font-display);
+    color: var(--text);
+    font-size: clamp(0.94rem, 2.85vw, 1.06rem);
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+}
+
+.invite-opening {
+    margin-bottom: 1rem !important;
+}
+
+.invite-parents {
+    padding: 0.35rem 0;
+}
+
+.invite-parent-name {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin: 0;
+}
+
+.invite-ampersand {
+    font-family: var(--font-script);
+    font-size: 1.8rem;
+    color: var(--gold);
+    line-height: 1;
+    opacity: 0.9;
+}
+
+.invite-formal {
+    text-align: center;
+}
+
+.invite-event-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--gold);
+}
+
+/* Bunga penjuru halus (gaya rujukan) */
+.invite-floral-accent {
+    position: absolute;
+    width: clamp(56px, 16vw, 88px);
+    height: clamp(56px, 16vw, 88px);
+    pointer-events: none;
+    opacity: 0.55;
+    z-index: 0;
+}
+
+.invite-floral-accent--tl {
+    top: -0.25rem;
+    left: -0.5rem;
+    background: radial-gradient(circle at 30% 30%, var(--peach) 0%, rgba(255, 203, 164, 0) 62%),
+        radial-gradient(circle at 65% 55%, var(--cream) 0%, rgba(255, 245, 228, 0) 55%);
+}
+
+.invite-floral-accent--tr {
+    top: -0.25rem;
+    right: -0.5rem;
+    background: radial-gradient(circle at 70% 35%, var(--blush-pink) 0%, rgba(250, 218, 221, 0) 58%),
+        radial-gradient(circle at 40% 60%, var(--cream) 0%, transparent 55%);
+}
+
+.invite-floral-accent--bl {
+    bottom: -0.5rem;
+    left: -0.35rem;
+    opacity: 0.45;
+    background: radial-gradient(ellipse at 40% 60%, var(--sage) 0%, transparent 65%);
+}
+
+.invite-floral-accent--br {
+    bottom: -0.5rem;
+    right: -0.35rem;
+    opacity: 0.45;
+    background: radial-gradient(ellipse at 60% 50%, var(--peach) 0%, transparent 65%);
+}
+
+.invitation-header-hero>p,
+.invitation-header-hero>div,
+.invitation-header-hero>img {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.font-display {
+    font-family: var(--font-display);
+}
+
+.text-gradient {
+    background: linear-gradient(120deg, var(--gold) 0%, var(--peach-dark) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.letter-space {
+    letter-spacing: 0.2em;
+}
+
+.intro-text {
+    max-width: 36rem;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .intro-text {
+        font-size: 1.1rem;
+    }
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--peach), transparent);
+    opacity: 0.8;
+}
+
+.section-title {
+    color: var(--gold);
+}
+
+/* --- Petak butiran --- */
+.detail-tile {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, var(--cream) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.detail-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1.25rem rgba(61, 58, 54, 0.08);
+}
+
+.detail-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* --- Kiraan detik --- */
+.countdown-wrap {
+    background: linear-gradient(135deg, rgba(255, 245, 228, 0.8) 0%, rgba(250, 218, 221, 0.4) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.cd-unit {
+    width: 4.8rem;
+    height: 4.8rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    border: 2px solid rgba(212, 175, 55, 0.15);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cd-unit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(212, 175, 55, 0.15) !important;
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+.cd-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--sage-dark);
+    line-height: 1;
+    margin-bottom: 0.1rem;
+}
+
+.cd-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    color: var(--peach-dark);
+}
+
+/* --- Alamat --- */
+.address-box {
+    background: linear-gradient(120deg, rgba(255, 245, 228, 0.95), rgba(250, 218, 221, 0.35));
+    border: 1px dashed rgba(212, 175, 55, 0.45);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.address-block:hover .address-box,
+.address-block:focus-visible .address-box {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25);
+}
+
+.address-block:focus-visible {
+    outline: none;
+}
+
+.text-accent {
+    color: var(--peach-dark);
+}
+
+/* --- Butang --- */
+.btn-pill {
+    border-radius: 25px;
+    font-weight: 500;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.btn-pill:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0.4rem 1.2rem rgba(51, 51, 51, 0.15);
+    filter: brightness(0.95);
+}
+
+.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: linear-gradient(135deg, var(--peach) 0%, var(--blush-pink) 100%);
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: linear-gradient(135deg, var(--peach-dark) 0%, #f0c0c5 100%);
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-focus-shadow-rgb: 255, 203, 164;
+    background: var(--bs-btn-bg);
+    border: none;
+}
+
+.btn-accent {
+    --bs-btn-color: #333;
+    --bs-btn-bg: var(--sage);
+    --bs-btn-border-color: var(--sage);
+    --bs-btn-hover-color: #333;
+    --bs-btn-hover-bg: var(--sage-dark);
+    --bs-btn-hover-border-color: var(--sage-dark);
+    --bs-btn-active-bg: #98ba99;
+    --bs-btn-active-border-color: #98ba99;
+    color: #333;
+}
+
+.btn-outline-accent {
+    --bs-btn-color: var(--gold);
+    --bs-btn-border-color: var(--gold);
+    --bs-btn-hover-bg: rgba(212, 175, 55, 0.15);
+    --bs-btn-hover-border-color: var(--gold);
+    --bs-btn-hover-color: var(--gold);
+}
+
+/* --- Animasi kemasukan --- */
+.fade-in-down {
+    animation: fadeInDown 0.8s ease forwards;
+    opacity: 0;
+}
+
+.fade-in-down.delay-1 {
+    animation-delay: 0.15s;
+}
+
+.fade-in-down.delay-2 {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger dalam kad */
+.invitation-card .reveal-on-scroll:nth-child(1) {
+    transition-delay: 0s;
+}
+
+.invitation-card .reveal-on-scroll:nth-child(2) {
+    transition-delay: 0.05s;
+}
+
+.invitation-card .reveal-on-scroll:nth-child(3) {
+    transition-delay: 0.1s;
+}
+
+.invitation-card .reveal-on-scroll:nth-child(4) {
+    transition-delay: 0.15s;
+}
+
+.invitation-card .reveal-on-scroll:nth-child(5) {
+    transition-delay: 0.2s;
+}
+
+.invitation-card .reveal-on-scroll:nth-child(6) {
+    transition-delay: 0.25s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cover-page:not(.is-leaving),
+    .invitation-card,
+    .fade-in-down,
+    .shape,
+    .reveal-on-scroll {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .cover-page.is-leaving {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+
+    .main-invitation:not([hidden]) {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* --- Footer copyright --- */
+.page-footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2500;
+    padding: 0.7rem 1rem;
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(51, 51, 51, 0.75);
+    background: rgba(255, 245, 228, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(212, 175, 55, 0.25);
+    pointer-events: none; /* footer bukan elemen interaktif */
+}
+
+@media (max-width: 576px) {
+    .page-footer {
+        font-size: 0.72rem;
+        padding: 0.6rem 0.8rem;
+    }
+}
