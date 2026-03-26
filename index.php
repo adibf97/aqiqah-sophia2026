@@ -273,7 +273,14 @@ $cover_time_line = $t_start && $t_end
                         </section>
 
                         <!-- Tindakan -->
-                        <section class="d-flex flex-column flex-sm-row flex-wrap gap-2 justify-content-center align-items-stretch reveal-on-scroll" data-reveal>
+                        <section class="d-flex flex-column align-items-center reveal-on-scroll gap-2" data-reveal>
+                            <p class="small text-muted text-center mb-0 px-3 cal-reminder" style="max-width: 32rem;">
+                                Petunjuk: ketik <strong>Tambah ke Kalendar</strong> — sistem akan memuat turun
+                                fail jadual <strong>.ics</strong>. Buka fail tersebut untuk menambah acara ke
+                                <strong>Google Calendar</strong>, <strong>Apple Calendar</strong> (iPhone / iPad),
+                                atau aplikasi kalendar lain yang menyokong .ics.
+                            </p>
+                            <div class="d-flex flex-column flex-sm-row flex-wrap gap-2 justify-content-center align-items-stretch w-100">
                             <a class="btn btn-accent btn-pill px-4"
                                id="btnAddCalendar"
                                href="#"
@@ -284,6 +291,7 @@ $cover_time_line = $t_start && $t_end
                                data-cal-details="<?php echo htmlspecialchars($invitation_text, ENT_QUOTES, 'UTF-8'); ?>">
                                 Tambah ke Kalendar
                             </a>
+                            </div>
                         </section>
 
                         <?php if (!empty($nasheed_audio_url)) : ?>
