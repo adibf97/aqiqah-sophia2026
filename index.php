@@ -315,13 +315,37 @@ $cover_time_line = $t_start && $t_end
                 <div class="modal-body p-4 pt-3">
                     <div class="d-grid gap-3">
                         <a href="<?php echo htmlspecialchars($waze_url); ?>" target="_blank" rel="noopener noreferrer" class="btn btn-pill d-flex align-items-center justify-content-center gap-2" style="background: #fff; border: 1px solid rgba(212, 175, 55, 0.3); color: var(--charcoal); box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: 600;">
-                            <span style="font-size: 1.2rem; line-height: 1;">🚙</span> Waze
+                            <img
+                                src="assets/images/wazeicon.png"
+                                alt="Waze"
+                                width="22"
+                                height="22"
+                                style="object-fit: contain;"
+                                loading="lazy"
+                                decoding="async"
+                            /> Waze
                         </a>
                         <a href="<?php echo htmlspecialchars($google_maps_url); ?>" target="_blank" rel="noopener noreferrer" class="btn btn-pill d-flex align-items-center justify-content-center gap-2" style="background: #fff; border: 1px solid rgba(212, 175, 55, 0.3); color: var(--charcoal); box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: 600;">
-                            <span style="font-size: 1.2rem; line-height: 1;">🗺️</span> Google Maps
+                            <img
+                                src="assets/images/gmapicon.png"
+                                alt="Google Maps"
+                                width="22"
+                                height="22"
+                                style="object-fit: contain;"
+                                loading="lazy"
+                                decoding="async"
+                            /> Google Maps
                         </a>
                         <a href="<?php echo htmlspecialchars($apple_maps_url); ?>" target="_blank" rel="noopener noreferrer" class="btn btn-pill d-flex align-items-center justify-content-center gap-2" style="background: #fff; border: 1px solid rgba(212, 175, 55, 0.3); color: var(--charcoal); box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: 600;">
-                            <span style="font-size: 1.2rem; line-height: 1;">🍎</span> Apple Maps
+                            <img
+                                src="assets/images/applemapicon.png"
+                                alt="Apple Maps"
+                                width="22"
+                                height="22"
+                                style="object-fit: contain;"
+                                loading="lazy"
+                                decoding="async"
+                            /> Apple Maps
                         </a>
                     </div>
                 </div>
