@@ -40,10 +40,11 @@ Open `index.php` and edit these variables near the top:
 ## Deploy to GitHub + Vercel
 This project uses **PHP**, and Vercel does **not** run PHP by default. Use a static export.
 
-1. Create a static HTML snapshot:
+1. Create a static HTML snapshot (**UTF-8** — do **not** use PowerShell `php index.php > index.html`; it often writes **UTF-16** and breaks `<`, Arabic text, and emojis):
    ```bash
-   php index.php > index.html
+   php export-static.php
    ```
+   This writes `index.html` as plain UTF-8 (no BOM).
 2. Commit and push both:
    - `index.html`
    - `assets/`

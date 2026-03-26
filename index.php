@@ -13,6 +13,8 @@ ini_set('log_errors', '0');
 $page_title       = 'Kad Jemputan Rumah Terbuka Aidilfitri & Majlis Aqiqah Aurora Sophia';
 $event_title1     = 'Majlis Aqiqah';
 $event_title2     = 'Rumah Terbuka Aidilfitri';
+/** Tajuk penuh untuk kalendar / meta (sentiasa wujud) */
+$event_title      = $event_title1 . ' & ' . $event_title2;
 $invitation_text  = 'Dengan penuh kesyukuran, kami menjemput anda sekeluarga ke majlis aqiqah puteri kami';
 
 // —— Header kad (dalaman) — susun atur seperti rujukan: salam, ibu bapa, jemputan formal ——
