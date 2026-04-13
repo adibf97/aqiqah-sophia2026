@@ -57,6 +57,9 @@ $waze_url = 'https://waze.com/ul?q=' . rawurlencode($address) . '&navigate=yes';
 // Apple Maps
 $apple_maps_url = 'https://maps.apple.com/?q=' . rawurlencode($address);
 
+// Borang RSVP (Google Forms)
+$rsvp_form_url = 'https://forms.gle/Hm66Tvy8k4MXfGWw9';
+
 // —— RSVP WhatsApp (kod negara Malaysia tanpa +, contoh: 60123456789) ——
 $whatsapp_number = '60123456789'; // tukar ke nombor sebenar
 $whatsapp_message  = rawurlencode('Assalamualaikum, saya ingin mengesahkan kehadiran ke Majlis Aqiqah Aurora Sophia.');
@@ -354,6 +357,29 @@ $cover_time_line = $t_start && $t_end
             </div>
         </div>
     </div>
+
+    <!-- RSVP — Google Form -->
+    <section class="rsvp-strip py-4 pb-5 mb-4" aria-label="RSVP">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="rounded-4 p-4 text-center shadow-sm border"
+                        style="background: rgba(255, 255, 255, 0.92); border-color: rgba(212, 175, 55, 0.25) !important;">
+                        <h2 class="h5 font-display mb-2" style="color: var(--gold); letter-spacing: 0.06em;">RSVP</h2>
+                        <p class="small text-muted mb-3 mb-md-4">
+                            Sila isi borang untuk mengesahkan kehadiran anda ke majlis ini.
+                        </p>
+                        <a class="btn btn-primary btn-pill px-4"
+                            href="<?php echo htmlspecialchars($rsvp_form_url, ENT_QUOTES, 'UTF-8'); ?>"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Buka borang RSVP (Google Form)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer copyright (sentiasa dipaparkan) -->
     <footer class="page-footer" aria-label="Copyright">
