@@ -41,7 +41,7 @@ $event_time_start = '10:00';
 $event_time_end   = '16:00';
 
 // Paparan manusia (Bahasa Melayu)
-$event_date_display = 'Ahad, 18 April 2026';
+$event_date_display = 'Sabtu, 18 April 2026';
 $event_time_display = '10:00 pagi – 2:00 petang';
 
 // —— Lokasi ——
